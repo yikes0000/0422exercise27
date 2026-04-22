@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout Practice</title>
+    <style>
+        /* --- 1. 基礎與背景設定 --- */
+        body {
+            /* 模擬圖片最外層的淺藍色背景 */
+            background-color: #4daaf2; 
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        /* 包覆所有區塊的白色大容器 */
+        .container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 600px; /* 限制最大寬度，讓畫面看起來像圖片裡的比例 */
+            padding: 15px;
+            border-radius: 8px; /* 白色容器的圓角 */
+            
+            /* 讓上中下三大區塊產生垂直間隔 */
+            display: flex;
+            flex-direction: column;
+            gap: 15px; 
+        }
+
+        /* 定義每個小方塊的共通外觀 (圓角與基礎高度) */
+        .box {
+            border-radius: 4px;
+        }
+
+        /* 定義三個區塊的專屬顏色與高度 */
+        .box.green { 
+            background-color: #a3cc39; 
+            min-height: 120px; 
+        }
+        .box.blue { 
+            background-color: #00bcd4; 
+            min-height: 80px; 
+        }
+        .box.gray { 
+            background-color: #eaeff1; 
+            min-height: 60px; 
+        }
+
+        /* --- 2. 預設排版：狀態 (b) 電腦版寬螢幕 --- */
+        
+        /* 中間藍色區塊：設定為 3 欄等寬 */
+        .middle-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 1fr 代表平均分配剩餘空間 */
+            gap: 10px; /* 區塊之間的間距 */
+        }
+
+        /* 底部灰色區塊：設定為 4 欄等寬 */
+        .bottom-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        /* --- 3. 媒體查詢：狀態 (a) 當寬度小於 480px 時 --- */
+        
+        @media (max-width: 480px) {
+            
+            /* 覆寫中間藍色區塊：變成 1 欄 (垂直堆疊) */
+            .middle-section {
+                grid-template-columns: 1fr;
+            }
+
+            /* 覆寫底部灰色區塊：變成 2 欄 (2x2 網格) */
+            .bottom-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="top-section">
+            <div class="box green"></div>
+        </div>
+
+        <div class="middle-section">
+            <div class="box blue"></div>
+            <div class="box blue"></div>
+            <div class="box blue"></div>
+        </div>
+
+        <div class="bottom-section">
+            <div class="box gray"></div>
+            <div class="box gray"></div>
+            <div class="box gray"></div>
+            <div class="box gray"></div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
